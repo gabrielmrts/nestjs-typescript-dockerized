@@ -13,9 +13,27 @@ datasource db {
 model users {
   id Int @id @default(autoincrement())
   name String @db.VarChar(255)
+  username String @db.VarChar(255)
   email String @db.VarChar(255)
   password String @db.VarChar(255)
-  document String?
+  description String? @db.Text()
   active Boolean @default(true)
+  verified Boolean @default(false)
+  posts posts[]
+  role Role @default(USER)
   createdAt DateTime @default(now())
+  @@unique([username, email])
+}
+
+model posts {
+  id Int @id @default(autoincrement())
+  text String @db.Text()
+  author users? @relation(fields: [authorId], references: [id])
+  authorId Int?
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  USER
+  ADMIN
 }
