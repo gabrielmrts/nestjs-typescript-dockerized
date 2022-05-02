@@ -6,6 +6,17 @@
 
 ### Dependencies
 > docker & docker compose
+    
 ### How use
 > setup .env file
+    
+> run migrations: npx prisma migrate dev 
+    
 > docker-compose up -d --build
+    
+### Task List
+> Add tests
+
+> Get app token from env file
+
+> Add s3 to allow file uploads
